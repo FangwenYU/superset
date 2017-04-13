@@ -2,11 +2,18 @@ FROM python:2.7.13
 
 ENV SUPERSET_VERSION=0.17.4
 
-RUN apt-get install build-essential libssl-dev libffi-dev python-dev python-pip libsasl2-dev libldap2-dev && \
+RUN apk add --no-cache \
+        curl \
+        libffi-dev \
+        cyrus-sasl-dev \
+        mariadb-dev \
+        postgresql-dev && \
     pip install superset==$SUPERSET_VERSION mysqlclient==1.3.7 && \
     addgroup superset && \
     adduser -h /home/superset -G superset -D superset && \
-    chown -R superset:superset
+    mkdir /home/superset/.superset && \
+    touch /home/superset/.superset/superset.db && \
+    chown -R superset:superset /home/superset
 
 # Configure Filesystem
 
@@ -20,3 +27,5 @@ HEALTHCHECK CMD ["curl", "-f", "http://localhost:8088/health"]
 ENTRYPOINT ["superset"]
 CMD ["runserver"]
 USER superset
+
+
