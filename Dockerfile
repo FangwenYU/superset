@@ -7,7 +7,7 @@ RUN apt-get -y update && \
     pip install superset==$SUPERSET_VERSION mysqlclient==1.3.7 && \
     addgroup superset && \
     adduser -h /home/superset -G superset -D superset && \
-    mkdir /home/superset/.superset && \
+    mkdir -p /home/superset/.superset && \
     touch /home/superset/.superset/superset.db && \
     chown -R superset:superset /home/superset
 
