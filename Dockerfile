@@ -6,7 +6,7 @@ RUN apt-get -y update && \
     apt-get -y install build-essential libssl-dev libffi-dev python-dev python-pip libsasl2-dev libldap2-dev && \
     pip install superset==$SUPERSET_VERSION mysqlclient==1.3.7 && \
     addgroup superset && \
-    adduser --home /home/superset --group superset superset && \
+    adduser superset && \
     mkdir -p /home/superset/.superset && \
     touch /home/superset/.superset/superset.db && \
     chown -R superset:superset /home/superset
