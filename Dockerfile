@@ -2,9 +2,8 @@ FROM python:2.7.13
 
 ENV SUPERSET_VERSION=0.17.4
 
-#apt-get install build-essential libssl-dev libffi-dev python-dev python-pip libsasl2-dev libldap2-dev && \
-
-RUN pip install superset==$SUPERSET_VERSION mysqlclient==1.3.7 && \
+RUN apt-get install build-essential libssl-dev libffi-dev python-dev python-pip libsasl2-dev libldap2-dev && \
+    pip install superset==$SUPERSET_VERSION mysqlclient==1.3.7 && \
     addgroup superset && \
     adduser -h /home/superset -G superset -D superset && \
     chown -R superset:superset
