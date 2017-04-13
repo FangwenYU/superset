@@ -14,7 +14,7 @@ RUN apt-get -y update && \
 # Configure Filesystem
 
 WORKDIR /home/superset
-COPY  superset .
+# COPY  superset .
 VOLUME /home/superset/.superset
 
 # Deploy application
