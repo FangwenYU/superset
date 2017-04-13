@@ -2,12 +2,8 @@ FROM python:2.7.13
 
 ENV SUPERSET_VERSION=0.17.4
 
-RUN apk add --no-cache \
-        curl \
-        libffi-dev \
-        cyrus-sasl-dev \
-        mariadb-dev \
-        postgresql-dev && \
+RUN apt-get update && \
+    apt-get install build-essential libssl-dev libffi-dev python-dev python-pip libsasl2-dev libldap2-dev && \
     pip install superset==$SUPERSET_VERSION mysqlclient==1.3.7 && \
     addgroup superset && \
     adduser -h /home/superset -G superset -D superset && \
